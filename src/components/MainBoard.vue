@@ -9,7 +9,6 @@
 			</task-card>
 			<task-card class="p-3 my-3">
 				<template #header> Learning NuxtJS</template>
-				<template #paragraph> I am currently learning nuxt JS </template>
 				<template #description>Nuxt JS is the go to for SSR </template>
 			</task-card>
 			<task-card class="p-3 my-3">
@@ -21,18 +20,21 @@
 				<template #paragraph> I am currently learning vue js </template>
 			</task-card>
 		</task-column>
+
 		<task-column title="To do">
-			<task-card class="p-3 my-3">
-				<template #header> Learning Nuxt JS</template>
-				<template #paragraph> I am currently learning vue js </template>
+			<task-card class="p-3 my-3" v-for="task in TaskCards" :key="task.id">
+				<template #header> {{ task.title }}</template>
+				<template #description> {{ task.description }}</template>
 			</task-card>
 		</task-column>
+
 		<task-column title="In progress">
 			<task-card class="p-3 my-3">
 				<template #header> Learning Nuxt JS</template>
 				<template #paragraph> I am currently learning vue js </template>
 			</task-card>
 		</task-column>
+
 		<task-column title="Done">
 			<task-card class="p-3 my-3">
 				<template #header> Learning PHP </template>
@@ -54,7 +56,9 @@
 			TaskCard,
 		},
 		data() {
-			return {};
+			return {
+				TaskCards: this.$store.state.tasks,
+			};
 		},
 	};
 </script>

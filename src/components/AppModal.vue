@@ -30,12 +30,12 @@
 	dialog {
 		position: fixed;
 		top: 30vh;
-		width: 30rem;
-		left: calc(50% - 15rem);
+		width: 45rem;
+		left: 60vh;
 		margin: 0;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 		border-radius: 12px;
-		padding: 1rem;
+		padding: 1.5rem;
 		background-color: white;
 		z-index: 100;
 		border: none;
