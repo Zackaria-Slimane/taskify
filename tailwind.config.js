@@ -12,6 +12,9 @@ module.exports = {
 				champagne: "#FECB90",
 				grayblue: "#ebf0f7",
 				trellowish: "#ece8ff",
+				amber: "#f59e0b",
+				cyan: "#06b6d4",
+				lime: "#84cc16",
 			},
 
 			fontFamily: {

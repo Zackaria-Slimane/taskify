@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="title">
 		<div v-if="openDialog" class="backdrop" @click="$emit('close')"></div>
 		<transition name="modal">
 			<dialog open v-if="openDialog">
@@ -11,7 +11,7 @@
 
 <script>
 	export default {
-		props: ["openDialog"],
+		props: ["openDialog", "title"],
 		emits: ["close"],
 	};
 </script>
@@ -40,6 +40,14 @@
 		z-index: 100;
 		border: none;
 		/* animation: modal 0.3s ease-out forwards; */
+	}
+	@media only screen and (max-width: 600px) {
+		dialog {
+			top: 20vh;
+			left: 0;
+			margin: 0 auto;
+			width: 80vw;
+		}
 	}
 
 	.modal-enter-active {
