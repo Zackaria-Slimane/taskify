@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-grayblue rounded-lg min-h-screen overflow-y-scroll">
+	<div class="bg-grayblue rounded-lg min-h-fit sm:min-h-auto overflow-y-scroll">
 		<h3
 			:id="title"
 			class="flex justify-between font-poppins font-bold text-indigo-300 p-5 hover:text-indigo-900 border-b-4 border-indigo-300"
@@ -7,12 +7,17 @@
 			{{ title }}
 			<div class="text-mainblue">
 				<button @click="openModal">
-					<i class="fa-light fa-pen-field"> </i>
+					<i class="fa-light fa-pen-field test"> </i>
 				</button>
 			</div>
 		</h3>
 		<slot></slot>
-		<app-modal class="p-5 container" @close="hideDialog" :openDialog="dialogIsVisible">
+		<app-modal
+			class="p-5 container"
+			@close="hideDialog"
+			:id="title"
+			:openDialog="dialogIsVisible"
+		>
 			<div class="p-1">
 				<label
 					for="title"
@@ -30,7 +35,7 @@
 				<textarea
 					type="textarea"
 					name="description"
-					rows="5"
+					rows="10"
 					ref="descirption"
 					class="mt-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-4/5 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
 					placeholder="New Card description"
@@ -63,7 +68,6 @@
 		},
 		methods: {
 			openModal() {
-				console.log("modal clicked", this.dialogIsVisible);
 				this.dialogIsVisible = true;
 			},
 			showDialog() {
@@ -73,16 +77,25 @@
 				this.dialogIsVisible = false;
 			},
 
+			generateID() {
+				let id = Date.now() + Math.random().toLocaleString();
+				return id.split(".")[1];
+			},
+
 			addTask() {
-				console.log("addTask", this.$refs.title.value, this.$refs.descirption.value);
 				let newTask = {
 					title: this.$refs.title.value,
 					description: this.$refs.descirption.value,
-					id: this.$store.state.tasks.length + 2,
+					id: this.generateID(),
+					parent: this.title,
 				};
 
-				this.$store.commit("pushTask", newTask);
+				if (newTask.title === "" || newTask.description === "") {
+					alert("Please fill all fields");
+					return;
+				}
 
+				this.$store.commit("pushTask", newTask);
 				this.hideDialog();
 			},
 		},
