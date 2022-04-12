@@ -1,15 +1,15 @@
 <template>
 	<div>
 		<nav
-			class="bg-grayblue w-full rounded px-4 py-6 text-white shadow-md dark:bg-gray-800 sm:px-4"
+			class="bg-grayblue w-full rounded px-4 py-4 text-white shadow-md dark:bg-gray-800 sm:px-4"
 		>
 			<div class="container mx-auto flex flex-wrap items-center justify-between">
-				<a class="flex">
-					<span
-						class="font-lobster text-mainblue cursor-pointer self-center whitespace-nowrap text-4xl hover:text-blue-300 dark:text-white"
-						>Taskify
-					</span>
-				</a>
+				<router-link
+					id="logo"
+					class="font-lobster cursor-pointer self-center whitespace-nowrap text-4xl hover:text-blue-300 dark:text-white"
+					to="/"
+					>Taskify
+				</router-link>
 
 				<button
 					type="button"
@@ -47,23 +47,20 @@
 					:class="{ hidden: !isOpen }"
 					id="mobile-menu"
 				>
-					<ul class="mt-4 flex flex-col font-bold md:mt-0 md:flex-row md:space-x-10">
-						<li>
-							<a
-								href="javascript:0void"
-								class="font-poppins text-mainblue block cursor-pointer py-2 pr-4 pl-3 text-xl hover:text-blue-500 dark:text-white md:p-0"
-								>Login
-							</a>
-						</li>
-
-						<li>
-							<a
-								href="javascript:0void"
-								class="font-poppins text-mainblue block cursor-pointer py-2 pr-4 pl-3 text-xl hover:text-blue-500 dark:text-white md:p-0"
-								>Sign up
-							</a>
-						</li>
-					</ul>
+					<nav
+						class="mt-4 p-3 flex flex-col font-bold md:mt-0 md:flex-row md:space-x-10 h-10"
+					>
+						<router-link
+							class="font-poppins text-mainblue block cursor-pointer py-2 pr-4 pl-3 text-xl hover:text-blue-500 dark:text-white md:p-0"
+							to="/"
+							>Home
+						</router-link>
+						<router-link
+							class="font-poppins text-mainblue block cursor-pointer py-2 pr-4 pl-3 text-xl hover:text-blue-500 dark:text-white md:p-0"
+							to="/login"
+							>Login
+						</router-link>
+					</nav>
 				</div>
 			</div>
 		</nav>
@@ -85,3 +82,12 @@
 		},
 	};
 </script>
+
+<style scoped>
+	#logo {
+		color: #264653;
+	}
+	.router-link-active {
+		color: #0070f3;
+	}
+</style>
