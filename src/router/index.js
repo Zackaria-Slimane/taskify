@@ -13,6 +13,10 @@ const routes = [
 		name: "Login",
 		component: LoginView,
 	},
+	{
+		path: "/:pathMatch(.*)", //replaces the catch all route which used to be just the *
+		redirect: "/",
+	},
 ];
 
 const router = createRouter({
